@@ -1,0 +1,6 @@
+body {
+  text-rendering: optimizeLegibility !important;
+  -webkit-font-smoothing: antialiased !important;
+  font-family: sans-serif;
+  height: 100%;
+}

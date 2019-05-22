@@ -1,0 +1,58 @@
+.floating-bar {
+  height: 800px;
+  width: 400px;
+  background-color: rgb(255, 255, 255);
+  position: absolute;
+  left: 25px;
+  top: 25px;
+  z-index: 1;
+  border-radius: 10px;
+  border-color: gainsboro;
+  border-style: solid;
+  border-width: 1px;
+  box-shadow: 1px 3px 5px 3px #888888;
+  overflow: auto;
+}
+
+.item-bar {
+  border-bottom: 1px #dddddd solid;
+  height: 100px;
+  display: flex;
+  align-items: center;
+  justify-items: center;
+}
+
+.avatar-item {
+  width: 50px;
+  height: 50px;
+  border-radius: 100px;
+  margin: 20px;
+}
+
+.user-info {
+  display: flex;
+  flex-direction: column;
+  flex-grow: 1;
+}
+
+.btn-view {
+  width: 50px;
+  justify-content: center;
+  display: flex;
+  border-left: 1px #dddddd solid;
+  height: 100%;
+  align-items: center;
+}
+
+.btn-view a {
+  color: #888888;
+}
+
+.btn-remove {
+  color: #888888;
+  width: 50px;
+}
+
+.btn-red:hover {
+  color: Tomato
+}
