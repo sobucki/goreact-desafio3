@@ -53,6 +53,11 @@
   width: 50px;
 }
 
+.btn-remove button {
+  background: transparent;
+  border: 0
+}
+
 .btn-red:hover {
   color: Tomato
 }

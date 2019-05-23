@@ -1,7 +1,7 @@
-import React, { Fragment } from "react";
+import React, { Fragment } from 'react';
 
-import Map from "../../components/Map";
-import LeftBar from "../../components/LeftBar";
+import Map from '../../components/Map';
+import LeftBar from '../../components/LeftBar';
 
 const Main = () => (
   <Fragment>
