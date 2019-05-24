@@ -2,8 +2,8 @@ import { call, put, select } from 'redux-saga/effects';
 import { toast } from 'react-toastify';
 import api from '../../services/api';
 
-import { addUserSucess, addUserError } from '../actions/users';
-import { hideModal } from '../actions/modal';
+import { Creators as UserActions } from '../ducks/users';
+import { Creators as ModalActions } from '../ducks/modal';
 
 export function* addUser(action) {
   try {
@@ -19,18 +19,18 @@ export function* addUser(action) {
         avatar: data.avatar_url,
         cordinates: action.payload.cordinates,
       };
-      yield put(addUserSucess(userData));
+      yield put(UserActions.addUserSucess(userData));
       toast.success('Usuário adicionado com sucesso!', {
         position: toast.POSITION.TOP_RIGHT,
       });
     }
   } catch (error) {
     console.tron.log(error);
-    yield put(addUserError('Não foi possível adicionar o usuário.'));
+    yield put(UserActions.addUserError('Não foi possível adicionar o usuário.'));
     toast.error('Não foi possível adicionar o usuário.', {
       position: toast.POSITION.TOP_RIGHT,
     });
   } finally {
-    yield put(hideModal());
+    yield put(ModalActions.hideModal());
   }
 }

@@ -3,7 +3,7 @@ import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux';
 import MapGL, { Marker } from 'react-map-gl';
 import PropTypes from 'prop-types';
-import * as ModalActions from '../../store/actions/modal';
+import { Creators as ModalActions } from '../../store/ducks/modal';
 
 // eslint-disable-next-line import/no-extraneous-dependencies
 import 'mapbox-gl/dist/mapbox-gl.css';
@@ -11,6 +11,18 @@ import 'mapbox-gl/dist/mapbox-gl.css';
 class Map extends Component {
   static propTypes = {
     showModal: PropTypes.func.isRequired,
+    users: PropTypes.arrayOf(
+      PropTypes.shape({
+        id: PropTypes.number,
+        name: PropTypes.string,
+        username: PropTypes.string,
+        avatar: PropTypes.string,
+        cordinates: PropTypes.shape({
+          latitude: PropTypes.number,
+          longitude: PropTypes.number,
+        }),
+      }),
+    ).isRequired,
   };
 
   state = {

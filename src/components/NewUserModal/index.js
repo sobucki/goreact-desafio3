@@ -5,8 +5,8 @@ import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux';
 import Modal from 'react-modal';
 import PropTypes from 'prop-types';
-import * as ModalActions from '../../store/actions/modal';
-import * as UserActions from '../../store/actions/users';
+import { Creators as ModalActions } from '../../store/ducks/modal';
+import { Creators as UserActions } from '../../store/ducks/users';
 
 import './style.css';
 

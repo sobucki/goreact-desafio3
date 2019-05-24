@@ -3,7 +3,7 @@ import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
 
 import { bindActionCreators } from 'redux';
-import * as UserActions from '../../store/actions/users';
+import { Creators as UserActions } from '../../store/ducks/users';
 
 import './style.css';
 

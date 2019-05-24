@@ -1,7 +1,6 @@
 import { combineReducers } from 'redux';
 
-// import users from "./users";
+import users from './users';
+import modal from './modal';
 
-const reducers = combineReducers({});
-
-export default reducers;
+export default combineReducers({ users, modal });
