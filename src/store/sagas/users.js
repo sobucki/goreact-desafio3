@@ -11,7 +11,11 @@ export function* addUser(action) {
 
     const isDuplicated = yield select(state => state.users.data.find(user => user.id === data.id));
 
-    if (!isDuplicated) {
+    if (isDuplicated) {
+      toast.warn('Usuário duplicado!', {
+        position: toast.POSITION.TOP_RIGHT,
+      });
+    } else {
       const userData = {
         id: data.id,
         username: data.login,
