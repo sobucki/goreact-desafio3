@@ -7,11 +7,8 @@ import * as UserActions from '../../store/actions/users';
 
 import './style.css';
 
-const LeftBar = ({ users, addUser, removeUser }) => (
+const LeftBar = ({ users, removeUser }) => (
   <div className="floating-bar">
-    <button type="button" onClick={() => addUser()}>
-      Novo
-    </button>
     {users.map(user => (
       <div className="item-bar" key={user.id}>
         <img className="avatar-item" src={user.avatar} alt="Avatar" />
@@ -36,7 +33,6 @@ const LeftBar = ({ users, addUser, removeUser }) => (
 
 LeftBar.propTypes = {
   removeUser: PropTypes.func.isRequired,
-  addUser: PropTypes.func.isRequired,
   users: PropTypes.arrayOf(
     PropTypes.shape({
       id: PropTypes.number,

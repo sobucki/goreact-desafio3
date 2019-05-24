@@ -21,7 +21,7 @@ export default function users(state = INITIAL_STATE, action) {
         {
           id: Math.random(),
           name: 'novo',
-          username: 'novologin',
+          username: action.payload.username,
           avatar: `https://avatars3.githubusercontent.com/u/${Math.floor(
             Math.random() * (99999999 - 1),
           ) + 1}`,

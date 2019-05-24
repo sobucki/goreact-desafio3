@@ -1,13 +1,15 @@
 import React, { Component } from 'react';
-
+import { bindActionCreators } from 'redux';
+import { connect } from 'react-redux';
 import MapGL, { Marker } from 'react-map-gl';
+import * as ModalActions from '../../store/actions/modal';
 
 // eslint-disable-next-line import/no-extraneous-dependencies
 import 'mapbox-gl/dist/mapbox-gl.css';
 
 // import { Container } from './styles';
 
-export default class Map extends Component {
+class Map extends Component {
   state = {
     viewport: {
       width: window.innerWidth,
@@ -39,7 +41,9 @@ export default class Map extends Component {
 
   handleMapClick = async (e) => {
     const [longitude, latitude] = e.lngLat;
-    alert(`Latitude: ${latitude} \nLongitude: ${longitude}`);
+    const { showModal } = this.props;
+    showModal();
+    // alert(`Latitude: ${latitude} \nLongitude: ${longitude}`);
   };
 
   render() {
@@ -72,3 +76,14 @@ export default class Map extends Component {
     );
   }
 }
+
+const mapStateToProps = state => ({
+  modal: state.modal,
+});
+
+const mapDispatchToProps = dispatch => bindActionCreators(ModalActions, dispatch);
+
+export default connect(
+  mapStateToProps,
+  mapDispatchToProps,
+)(Map);

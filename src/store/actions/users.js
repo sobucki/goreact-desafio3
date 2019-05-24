@@ -1,6 +1,6 @@
-export const addUser = () => ({
+export const addUser = username => ({
   type: 'ADD_USER',
-  payload: { name: 'text' },
+  payload: { username },
 });
 
 export const removeUser = id => ({
