@@ -22,12 +22,18 @@ const LeftBar = ({ users, removeUser }) => (
           </button>
         </div>
         <div className="btn-view btn-red">
-          <a className="btn-red" href="/">
+          <a
+            className="btn-red"
+            href={`https://github.com/${user.username}`}
+            target="_blank"
+            rel="noopener noreferrer"
+          >
             <i className=" fa fas fa-chevron-right fa-2x" />
           </a>
         </div>
       </div>
     ))}
+    {users.length === 0 && <span>nenhum registro</span>}
   </div>
 );
 
@@ -43,7 +49,7 @@ LeftBar.propTypes = {
 };
 
 const mapStateToProps = state => ({
-  users: state.users,
+  users: state.users.data,
 });
 
 const mapDispatchToProps = dispatch => bindActionCreators(UserActions, dispatch);

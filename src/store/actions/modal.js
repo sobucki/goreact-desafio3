@@ -1,6 +1,6 @@
-export const showModal = () => ({
+export const showModal = cordinates => ({
   type: 'SHOW_MODAL',
-  payload: {},
+  payload: { cordinates },
 });
 
 export const hideModal = () => ({

@@ -7,6 +7,7 @@ import Routes from './routes';
 
 import './reset.css';
 import './style.css';
+import 'react-toastify/dist/ReactToastify.css';
 
 import 'font-awesome/css/font-awesome.css';
 

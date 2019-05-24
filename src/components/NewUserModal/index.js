@@ -13,6 +13,19 @@ import './style.css';
 Modal.setAppElement(document.getElementById('root'));
 
 class NewUserModal extends Component {
+  static propTypes = {
+    loading: PropTypes.bool.isRequired,
+    hideModal: PropTypes.func.isRequired,
+    addUserRequest: PropTypes.func.isRequired,
+    modal: PropTypes.shape({
+      visible: PropTypes.bool,
+      cordinates: PropTypes.shape({
+        latitude: PropTypes.number,
+        longitude: PropTypes.number,
+      }),
+    }).isRequired,
+  };
+
   state = {
     inputUser: '',
   };
@@ -21,12 +34,12 @@ class NewUserModal extends Component {
 
   handleFormSubmit = (e) => {
     e.preventDefault();
-    const { addUser, hideModal } = this.props;
+    const { addUserRequest, modal } = this.props;
     const { inputUser } = this.state;
+    const { cordinates } = modal;
 
-    addUser(inputUser);
+    addUserRequest(inputUser, cordinates);
     this.setState({ inputUser: '' });
-    hideModal();
   };
 
   handleHideModal = () => {
@@ -36,8 +49,8 @@ class NewUserModal extends Component {
   };
 
   render() {
-    const { inputUser, loading } = this.state;
-    const { modal } = this.props;
+    const { inputUser } = this.state;
+    const { modal, loading } = this.props;
     return (
       <Modal
         isOpen={modal.visible}
@@ -67,15 +80,8 @@ class NewUserModal extends Component {
   }
 }
 
-NewUserModal.propTypes = {
-  hideModal: PropTypes.func.isRequired,
-  addUser: PropTypes.func.isRequired,
-  modal: PropTypes.shape({
-    visible: PropTypes.bool,
-  }).isRequired,
-};
-
 const mapStateToProps = state => ({
+  loading: state.users.loading,
   modal: state.modal,
 });
 
@@ -85,3 +91,6 @@ export default connect(
   mapStateToProps,
   mapDispatchToProps,
 )(NewUserModal);
+
+// colocar o avatar no mapa
+// e configurar mensagens de erro

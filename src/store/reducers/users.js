@@ -1,34 +1,19 @@
-const INITIAL_STATE = [
-  {
-    id: 1,
-    name: 'Rafael Soares Sobucki',
-    username: 'sobucki',
-    avatar: 'https://avatars3.githubusercontent.com/u/15240858',
-  },
-  {
-    id: 2,
-    name: 'shadelotus',
-    username: 'teste',
-    avatar: 'https://avatars3.githubusercontent.com/u/15240853',
-  },
-];
+const INITIAL_STATE = {
+  loading: false,
+  data: [],
+  error: '',
+};
 
 export default function users(state = INITIAL_STATE, action) {
   switch (action.type) {
-    case 'ADD_USER':
-      return [
-        ...state,
-        {
-          id: Math.random(),
-          name: 'novo',
-          username: action.payload.username,
-          avatar: `https://avatars3.githubusercontent.com/u/${Math.floor(
-            Math.random() * (99999999 - 1),
-          ) + 1}`,
-        },
-      ];
+    case 'ADD_USER_REQUEST':
+      return { ...state, loading: true };
+    case 'ADD_USER_SUCESS':
+      return { ...state, loading: false, data: [...state.data, action.payload.data] };
+    case 'ADD_USER_ERROR':
+      return { ...state, loading: false, error: action.payload.error };
     case 'REMOVE_USER':
-      return state.filter(user => user.id !== action.payload.id);
+      return { ...state, data: state.data.filter(user => user.id !== action.payload.id) };
 
     default:
       return state;

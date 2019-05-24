@@ -2,14 +2,17 @@ import React, { Component } from 'react';
 import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux';
 import MapGL, { Marker } from 'react-map-gl';
+import PropTypes from 'prop-types';
 import * as ModalActions from '../../store/actions/modal';
 
 // eslint-disable-next-line import/no-extraneous-dependencies
 import 'mapbox-gl/dist/mapbox-gl.css';
 
-// import { Container } from './styles';
-
 class Map extends Component {
+  static propTypes = {
+    showModal: PropTypes.func.isRequired,
+  };
+
   state = {
     viewport: {
       width: window.innerWidth,
@@ -42,12 +45,13 @@ class Map extends Component {
   handleMapClick = async (e) => {
     const [longitude, latitude] = e.lngLat;
     const { showModal } = this.props;
-    showModal();
+    showModal({ longitude, latitude });
     // alert(`Latitude: ${latitude} \nLongitude: ${longitude}`);
   };
 
   render() {
     const { viewport } = this.state;
+    const { users } = this.props;
     return (
       <MapGL
         {...viewport}
@@ -56,29 +60,31 @@ class Map extends Component {
         mapboxApiAccessToken="pk.eyJ1IjoiZGllZ28zZyIsImEiOiJjamh0aHc4em0wZHdvM2tyc3hqbzNvanhrIn0.3HWnXHy_RCi35opzKo8sHQ"
         onViewportChange={newViewPort => this.setState({ viewport: newViewPort })}
       >
-        <Marker
-          latitude={-23.5439948}
-          longitude={-46.6065452}
-          onClick={this.handleMapClick}
-          captureClick
-        >
-          <img
-            alt="avatar"
-            style={{
-              borderRadius: 100,
-              width: 48,
-              height: 48,
-            }}
-            src="https://avatars2.githubusercontent.com/u/2254731?v=4"
-          />
-        </Marker>
+        {users.map(user => (
+          <Marker
+            latitude={user.cordinates.latitude}
+            longitude={user.cordinates.longitude}
+            onClick={this.handleMapClick}
+            captureClick
+          >
+            <img
+              alt={`avatar_${user.username}`}
+              style={{
+                borderRadius: 100,
+                width: 48,
+                height: 48,
+              }}
+              src={user.avatar}
+            />
+          </Marker>
+        ))}
       </MapGL>
     );
   }
 }
 
 const mapStateToProps = state => ({
-  modal: state.modal,
+  users: state.users.data,
 });
 
 const mapDispatchToProps = dispatch => bindActionCreators(ModalActions, dispatch);

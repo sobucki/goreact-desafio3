@@ -54,7 +54,8 @@
 
 .btn-remove button {
   background: transparent;
-  border: 0
+  border: 0;
+  color: #888888;
 }
 
 .btn-red:hover {
